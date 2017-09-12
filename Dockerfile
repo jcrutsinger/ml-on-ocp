@@ -1,8 +1,12 @@
 FROM registry.access.redhat.com/rhel7.4
 
-RUN echo -e '[rhel7.4] \nname=rhel7.4 \nbaseurl=http://download.devel.redhat.com/released/RHEL-7/7.4/Server/x86_64/os/ \nenabled=1 \ngpgcheck=0 \n' >> /etc/yum.repos.d/rhel7.4.repo; yum -y install wget; yum clean all
+RUN echo -e '[rhel-7-server-rpms] \nname=rhel7.4 \nbaseurl=http://repo.home.nicknach.net/repo/rhel-7-server-rpms \nenabled=1 \ngpgcheck=0 \n' >> /etc/yum.repos.d/rhel7.4.repo; yum -y install wget; yum clean all
 
-RUN wget -nd -np -A.repo -rP /etc/yum.repos.d/ "http://perf1.perf.lab.eng.bos.redhat.com/pub/bgray/mlcc_repos/rhel7.4/"; yum -y update; yum -y install cmake gcc gcc-c++ git make patch pciutils unzip vim-enhanced; yum clean all
+RUN echo -e '[cuda] \nname=cuda \nbaseurl=http://repo.home.nicknach.net/repo/cuda \nenabled=1 \ngpgcheck=0 \n' >> /etc/yum.repos.d/cuda.repo;
+
+RUN echo -e '[epel] \nname=epel \nbaseurl=http://repo.home.nicknach.net/repo/epel \nenabled=1 \ngpgcheck=0 \n' >> /etc/yum.repos.d/epel.repo;
+
+RUN yum -y update; yum -y install cmake gcc gcc-c++ git make patch pciutils unzip vim-enhanced; yum clean all
 
 RUN yum -y install cuda; yum clean all; export CUDA_HOME="/usr/local/cuda" CUDA_PATH="${CUDA_HOME}" PATH="${CUDA_HOME}/bin${PATH:+:${PATH}}" LD_LIBRARY_PATH="${CUDA_HOME}/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"; echo -e 'export CUDA_HOME=/usr/local/cuda \nexport CUDA_PATH=${CUDA_HOME} \nexport PATH=${CUDA_HOME}/bin:${PATH} \nexport LD_LIBRARY_PATH=${CUDA_HOME}/lib64:/usr/local/lib:$LD_LIBRARY_PATH \n' >> ~/.bashrc; cd /tmp && wget -q "http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/cudnn-8.0-linux-x64-v6.0.tgz"; tar -C /usr/local -xf /tmp/cudnn-8.0-linux-x64-v6.0.tgz; /bin/rm /tmp/cudnn-8.0-linux-x64-v6.0.tgz
 
