@@ -15,6 +15,8 @@ RUN pip install tensorflow-gpu==1.3.0rc0
 
 RUN pip install keras
 
+RUN pip install jupyter
+
 # Set up our notebook config.
 COPY jupyter_notebook_config.py /root/.jupyter/
 
