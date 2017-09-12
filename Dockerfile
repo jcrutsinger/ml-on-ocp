@@ -1,6 +1,4 @@
 
-# mlcc -i RHEL7.4,CUDA,Python2,Keras,TensorFlow
-
 FROM registry.access.redhat.com/rhel7.4
 
 RUN echo -e '[rhel7.4] \nname=rhel7.4 \nbaseurl=http://download.devel.redhat.com/released/RHEL-7/7.4/Server/x86_64/os/ \nenabled=1 \ngpgcheck=0 \n' >> /etc/yum.repos.d/rhel7.4.repo; yum -y install wget; yum clean all
