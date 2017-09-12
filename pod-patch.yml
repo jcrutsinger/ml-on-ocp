@@ -1,0 +1,31 @@
+--- 
+apiVersion: v1
+kind: pod
+metadata: 
+  annotations: 
+    scheduler.alpha.kubernetes.io/affinity: |
+        {
+          "nodeAffinity": {
+            "requiredDuringSchedulingIgnoredDuringExecution": {
+              "nodeSelectorTerms": [
+                {
+                  "matchExpressions": [
+                    {
+                      "key": "alpha.kubernetes.io/nvidia-gpu-name",
+                      "operator": "In",
+                      "values": ["GTX_970"]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+spec: 
+  containers: 
+    - 
+      name: nmo-demo
+      resources: 
+        limits: 
+          alpha.kubernetes.io/nvidia-gpu: 1
+
