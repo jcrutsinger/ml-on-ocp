@@ -10,13 +10,13 @@ RUN yum -y update; yum -y install cmake gcc gcc-c++ git make patch pciutils unzi
 
 RUN yum -y install cuda; yum clean all; export CUDA_HOME="/usr/local/cuda" CUDA_PATH="${CUDA_HOME}" PATH="${CUDA_HOME}/bin${PATH:+:${PATH}}" LD_LIBRARY_PATH="${CUDA_HOME}/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"; echo -e 'export CUDA_HOME=/usr/local/cuda \nexport CUDA_PATH=${CUDA_HOME} \nexport PATH=${CUDA_HOME}/bin:${PATH} \nexport LD_LIBRARY_PATH=${CUDA_HOME}/lib64:/usr/local/lib:$LD_LIBRARY_PATH \n' >> ~/.bashrc; cd /tmp && wget -q "http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/cudnn-8.0-linux-x64-v6.0.tgz"; tar -C /usr/local -xf /tmp/cudnn-8.0-linux-x64-v6.0.tgz; /bin/rm /tmp/cudnn-8.0-linux-x64-v6.0.tgz
 
-RUN yum -y install python2-pip || yum -y install python-pip; yum -y install python2-devel || yum -y install python-devel; yum clean all; pip install --upgrade pip
+RUN yum -y install python34-pip; yum -y install python34-devel; yum clean all; pip3 install --upgrade pip
 
-RUN pip install tensorflow-gpu==1.3.0rc0
+RUN pip3 install tensorflow-gpu==1.3.0rc0
 
-RUN pip install keras
+RUN pip3 install keras
 
-RUN pip install jupyter
+RUN pip3 install jupyter
 
 # Set up our notebook config.
 COPY jupyter_notebook_config.py /root/.jupyter/
@@ -29,10 +29,7 @@ COPY notebooks /notebooks
 # We just add a little wrapper script.
 COPY run_jupyter.sh /
 
-# TensorBoard
-EXPOSE 6006
-# IPython
-EXPOSE 8888
+EXPOSE 6006 8888
 
 WORKDIR "/notebooks"
 
