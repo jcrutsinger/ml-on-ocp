@@ -11,4 +11,4 @@ RUN yum install -y cmake3; cd /tmp && git clone "https://github.com/Theano/libgp
 
 COPY mnist.py /
 
-CMD python mnist.py
+#CMD python mnist.py
