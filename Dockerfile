@@ -33,6 +33,6 @@ EXPOSE 6006 8888
 
 WORKDIR "/notebooks"
 
-COPY mnist.py /root
+COPY mnist.py /
 
-CMD run_jupyter.sh --allow-root
+CMD /run_jupyter.sh --allow-root
