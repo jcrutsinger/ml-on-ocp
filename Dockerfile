@@ -35,4 +35,4 @@ WORKDIR "/notebooks"
 
 COPY mnist.py /root
 
-CMD ["/run_jupyter.sh", "--allow-root"]
+CMD run_jupyter.sh --allow-root
