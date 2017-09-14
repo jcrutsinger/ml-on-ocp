@@ -8,4 +8,7 @@ RUN yum -y install cuda; yum clean all; export CUDA_HOME="/usr/local/cuda" CUDA_
 RUN yum install -y python2*pip python-devel; pip install --upgrade pip
 RUN pip install "https://github.com/Lasagne/Lasagne/archive/master.zip"
 RUN yum install -y cmake3; cd /tmp && git clone "https://github.com/Theano/libgpuarray.git"; mkdir -p /tmp/libgpuarray/Build && cd /tmp/libgpuarray/Build && cmake3 .. -DCMAKE_BUILD_TYPE=Release && make && make install; pip install Cython; cd /tmp/libgpuarray && python setup.py build_ext -L /usr/local/lib64 -I /usr/local/include && python setup.py install && ldconfig; echo -e '[global] \ndevice = cuda0 \nfloatX = float32 \n[nvcc] \nfastmath=True \n[cuda] \nroot=/usr/local/cuda \n' >> ~/.theanorc ; pip install Theano
-RUN curl https://raw.githubusercontent.com/Lasagne/Lasagne/master/examples/mnist.py -o /root/mnist.py
+
+COPY minst.py /
+
+CMD ["python minst.py"]
