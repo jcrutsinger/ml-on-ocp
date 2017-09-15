@@ -20,8 +20,8 @@ COPY jupyter_notebook_config.py /root/.jupyter/
 
 # Copy sample notebooks.
 COPY notebooks /notebooks
-COPY data /data
-COPY figures /figures
+COPY data /notebooks/data
+COPY figures /notebooks/figures
 
 
 # Jupyter has issues with being run directly:
