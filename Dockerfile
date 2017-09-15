@@ -19,6 +19,9 @@ COPY jupyter_notebook_config.py /root/.jupyter/
 
 # Copy sample notebooks.
 COPY notebooks /notebooks
+COPY data /data
+COPY figures /figures
+
 
 # Jupyter has issues with being run directly:
 #   https://github.com/ipython/ipython/issues/7062
@@ -28,7 +31,5 @@ COPY run_jupyter.sh /
 EXPOSE 8888 6006
 
 WORKDIR "/notebooks"
-
-COPY mnist.py /notebooks
 
 CMD /run_jupyter.sh --allow-root
