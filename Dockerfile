@@ -25,7 +25,7 @@ COPY notebooks /notebooks
 # We just add a little wrapper script.
 COPY run_jupyter.sh /
 
-EXPOSE 6006 8888
+EXPOSE 8888 6006
 
 WORKDIR "/notebooks"
 
