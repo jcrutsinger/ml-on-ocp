@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/rhel7.4
 
-RUN echo -e '[rhel-7-server-rpms] \nname=rhel-7-server-rpms \nbaseurl=http://repo.home.nicknach.net/repo/rhel-7-server-rpms \nenabled=1 \ngpgcheck=0 \n' >> /etc/yum.repos.d/rhel-7-server-rpms.repo;
+#RUN echo -e '[rhel-7-server-rpms] \nname=rhel-7-server-rpms \nbaseurl=http://repo.home.nicknach.net/repo/rhel-7-server-rpms \nenabled=1 \ngpgcheck=0 \n' >> /etc/yum.repos.d/rhel-7-server-rpms.repo;
 RUN echo -e '[cuda] \nname=cuda \nbaseurl=http://repo.home.nicknach.net/repo/cuda \nenabled=1 \ngpgcheck=0 \n' >> /etc/yum.repos.d/cuda.repo;
 RUN echo -e '[epel] \nname=epel \nbaseurl=http://repo.home.nicknach.net/repo/epel \nenabled=1 \ngpgcheck=0 \n' >> /etc/yum.repos.d/epel.repo;
 
@@ -10,12 +10,12 @@ RUN yum -y install cuda; yum clean all; export CUDA_HOME="/usr/local/cuda" CUDA_
 RUN yum -y install python34-pip; yum -y install python34-devel; yum clean all; pip3 install --upgrade pip
 RUN yum -y install python-pip; yum -y install python-devel; yum clean all; pip install --upgrade pip
 
-RUN pip3 install tensorflow-gpu==1.3.0rc0
+RUN pip3 install tensorflow-gpu==1.3.0
 RUN pip3 install keras
 RUN pip3 install jupyter
 RUN pip3 install matplotlib
 
-RUN pip install tensorflow-gpu==1.3.0rc0
+RUN pip install tensorflow-gpu==1.3.0
 RUN pip install keras
 RUN pip install jupyter
 RUN pip install matplotlib

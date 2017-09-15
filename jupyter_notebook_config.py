@@ -18,15 +18,13 @@ from IPython.lib import passwd
 c.NotebookApp.ip = '*'
 c.NotebookApp.port = int(os.getenv('PORT', 8888))
 c.NotebookApp.open_browser = False
-#c.MultiKernelManager.default_kernel_name = 'python'
-c.MultiKernelManager.default_kernel_name = 'python3'
+c.MultiKernelManager.default_kernel_name = 'python'
 
 # sets a password if PASSWORD is set in the environment
 if 'PASSWORD' in os.environ:
   password = os.environ['PASSWORD']
   if password:
-    #c.NotebookApp.password = passwd(password)
-    c.NotebookApp.password = passwd('welcome1')
+    c.NotebookApp.password = passwd(password)
   else:
     c.NotebookApp.password = ''
     c.NotebookApp.token = ''
