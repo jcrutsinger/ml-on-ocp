@@ -1,4 +1,9 @@
---- 
+oc patch dc nmo-demo -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers[0]":{"resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}}}}}'
+---
+or
+---
+oc edit dc
+
 apiVersion: v1
 kind: pod
 metadata: 
