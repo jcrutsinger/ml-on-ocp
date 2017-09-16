@@ -1,36 +1,35 @@
-oc patch dc nmo-demo -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers[0]":{"resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}}}}}'
----
-or
----
-oc edit dc
-
-apiVersion: v1
-kind: pod
-metadata: 
-  annotations: 
-    scheduler.alpha.kubernetes.io/affinity: |
-        {
-          "nodeAffinity": {
-            "requiredDuringSchedulingIgnoredDuringExecution": {
-              "nodeSelectorTerms": [
-                {
-                  "matchExpressions": [
-                    {
-                      "key": "alpha.kubernetes.io/nvidia-gpu-name",
-                      "operator": "In",
-                      "values": ["GTX_970"]
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        }
-spec: 
-  containers: 
-    - 
-      name: nmo-demo
-      resources: 
-        limits: 
-          alpha.kubernetes.io/nvidia-gpu: 1
+oc patch dc nmo-demo -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_980"]}]}]}}},"containers[0]":{"resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}}}}}'
+#---
+#or
+#---
+#oc edit dc
+#apiVersion: v1
+#kind: pod
+#metadata: 
+#  annotations: 
+#    scheduler.alpha.kubernetes.io/affinity: |
+#        {
+#          "nodeAffinity": {
+#            "requiredDuringSchedulingIgnoredDuringExecution": {
+#              "nodeSelectorTerms": [
+#                {
+#                  "matchExpressions": [
+#                    {
+#                      "key": "alpha.kubernetes.io/nvidia-gpu-name",
+#                      "operator": "In",
+#                      "values": ["GTX_980"]
+#                    }
+#                  ]
+#                }
+#              ]
+#            }
+#          }
+#        }
+#spec: 
+#  containers: 
+#    - 
+#      name: nmo-demo
+#      resources: 
+#        limits: 
+#          alpha.kubernetes.io/nvidia-gpu: 1
 
