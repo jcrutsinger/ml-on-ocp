@@ -1,0 +1,1 @@
+oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX_980' --overwrite
