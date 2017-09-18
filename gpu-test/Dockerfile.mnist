@@ -1,0 +1,40 @@
+## Pod Spec Now let’s create a pod that consumes a GPU. Here is where the scheduler affinity (routing based on nodeSelector) capability is leveraged: ~~~ # cat gpu-pod.yaml apiVersion: v1 kind: Pod metadata:  generateName: gpu-pod-  annotations:    scheduler.alpha.kubernetes.io/affinity: &gt;
+{
+"nodeAffinity": {
+"requiredDuringSchedulingIgnoredDuringExecution": {
+"nodeSelectorTerms": [
+{
+"matchExpressions": [
+{
+"key": "alpha.kubernetes.io/nvidia-gpu-name",
+"operator": "In",
+# This value has to match what you labeled the node with:
+# I used alpha.kubernetes.io/nvidia-gpu-name='GRID_K520'
+# It is just a string match.  Nothing intelligent yet.
+"values": ["GRID_K520"]
+}
+]
+}
+]
+}
+}
+}
+spec:
+containers:
+- name: gpu-container-1
+# We don’t need privileges, so commented out now.
+#      securityContext:
+#      privileged: true
+image: rhel7
+resources:
+limits:
+alpha.kubernetes.io/nvidia-gpu: 1
+# We don’t need volume mounts because for now we will embed all necessary libraries in the container image. See next section.
+#      volumeMounts:
+#      - mountPath: /usr/bin
+#        name: bin
+#      - mountPath: /usr/lib64/nvidia
+#        name: lib
+command:
+- python
+- "/root/mnist.py"
