@@ -1,4 +1,3 @@
-## Pod Spec Now let’s create a pod that consumes a GPU. Here is where the scheduler affinity (routing based on nodeSelector) capability is leveraged: ~~~ # cat gpu-pod.yaml apiVersion: v1 kind: Pod metadata:  generateName: gpu-pod-  annotations:    scheduler.alpha.kubernetes.io/affinity: &gt;
 {
 "nodeAffinity": {
 "requiredDuringSchedulingIgnoredDuringExecution": {
