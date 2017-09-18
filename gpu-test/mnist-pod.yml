@@ -1,22 +1,14 @@
-{
-"nodeAffinity": {
-"requiredDuringSchedulingIgnoredDuringExecution": {
-"nodeSelectorTerms": [
-{
-"matchExpressions": [
-{
-"key": "alpha.kubernetes.io/nvidia-gpu-name",
-"operator": "In",
-"values": ["GTX_980"]
-}
-]
-}
-]
-}
-}
-}
 spec:
 containers:
+  affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: alpha.kubernetes.io/nvidia-gpu-name
+          operator: In
+          values:
+          - GTX_980
 - name: gpu-container-1
 image: rhel7
 resources:
