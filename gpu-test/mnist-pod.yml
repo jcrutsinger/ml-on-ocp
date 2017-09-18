@@ -8,10 +8,7 @@
 {
 "key": "alpha.kubernetes.io/nvidia-gpu-name",
 "operator": "In",
-# This value has to match what you labeled the node with:
-# I used alpha.kubernetes.io/nvidia-gpu-name='GRID_K520'
-# It is just a string match.  Nothing intelligent yet.
-"values": ["GRID_K520"]
+"values": ["GTX_980"]
 }
 ]
 }
@@ -22,19 +19,10 @@
 spec:
 containers:
 - name: gpu-container-1
-# We don’t need privileges, so commented out now.
-#      securityContext:
-#      privileged: true
 image: rhel7
 resources:
-limits:
-alpha.kubernetes.io/nvidia-gpu: 1
-# We don’t need volume mounts because for now we will embed all necessary libraries in the container image. See next section.
-#      volumeMounts:
-#      - mountPath: /usr/bin
-#        name: bin
-#      - mountPath: /usr/lib64/nvidia
-#        name: lib
+  limits:
+    alpha.kubernetes.io/nvidia-gpu: 1
 command:
 - python
 - "/root/mnist.py"
