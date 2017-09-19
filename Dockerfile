@@ -25,9 +25,9 @@ RUN yum -y install python-pip;
 RUN pip install --upgrade pip;
 RUN yum -y install python-devel && yum clean all;
 RUN pip install tensorflow-gpu==1.3.0
-RUN pip install keras
 RUN pip install jupyter
 RUN pip install matplotlib
+RUN pip install keras
 
 # Set up our notebook config.
 COPY jupyter_notebook_config.py /root/.jupyter/
