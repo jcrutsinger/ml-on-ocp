@@ -27,6 +27,6 @@ if 'PASSWORD' in os.environ:
   if password:
     c.NotebookApp.password = passwd(password)
   else:
-    c.NotebookApp.password = ''
+    c.NotebookApp.password = 'welcome1'
     c.NotebookApp.token = ''
   del os.environ['PASSWORD']
