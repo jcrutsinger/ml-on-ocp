@@ -33,9 +33,7 @@ RUN pip install keras
 COPY jupyter_notebook_config.py /root/.jupyter/
 
 # Copy sample notebooks.
-COPY notebooks /notebooks
-COPY data /notebooks/data
-COPY figures /notebooks/figures
+COPY nmo-demo/notebooks /notebooks
 COPY run_jupyter.sh /
 
 EXPOSE 8888 6006
