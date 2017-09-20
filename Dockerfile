@@ -36,6 +36,6 @@ COPY run_jupyter.sh /
 
 EXPOSE 8888 6006
 
-WORKDIR "/notebooks"
+WORKDIR "${NOTEBOOK_DIR}"
 
 CMD /run_jupyter.sh --allow-root
