@@ -32,7 +32,6 @@ RUN pip install keras
 # Set up our notebook config.
 COPY jupyter_notebook_config.py /root/.jupyter/
 
-# Copy sample notebooks.
 COPY run_jupyter.sh /
 
 EXPOSE 8888 6006
