@@ -35,7 +35,7 @@ COPY jupyter_notebook_config.py /root/.jupyter/
 COPY run_jupyter.sh /
 COPY notebooks /notebooks
 
-WORKDIR "/notebooks"
+WORKDIR "/"
 
 EXPOSE 8888 6006
 
