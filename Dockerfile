@@ -33,10 +33,11 @@ RUN pip install keras
 COPY jupyter_notebook_config.py /root/.jupyter/
 
 COPY run_jupyter.sh /
+COPY notebooks /notebooks
+
+WORKDIR "/notebooks"
 
 EXPOSE 8888 6006
 
-RUN echo "Setting WORKDIR to '${NOTEBOOK_DIR}'"
-WORKDIR "/${NOTEBOOK_DIR}"
 
 CMD /run_jupyter.sh --allow-root
