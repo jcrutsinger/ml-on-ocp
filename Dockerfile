@@ -36,7 +36,7 @@ COPY run_jupyter.sh /
 COPY data /data
 #COPY figures /figures
 
-WORKDIR "/"
+#WORKDIR "/"
 
 EXPOSE 8888 6006
 
