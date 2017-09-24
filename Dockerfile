@@ -33,7 +33,7 @@ RUN pip install keras
 RUN mkdir /opt/ml-on-ocp
 COPY *.ipynb /opt/ml-on-ocp/
 COPY data /opt/ml-on-ocp/data
-#COPY figures /opt/ml-on-ocp
+COPY figures /opt/ml-on-ocp/figures
 
 WORKDIR "/opt/ml-on-ocp"
 
