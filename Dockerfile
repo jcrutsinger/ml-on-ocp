@@ -29,14 +29,15 @@ RUN pip install jupyter
 RUN pip install matplotlib
 RUN pip install keras
 
+#setup dir
+RUN mkdir /opt/ml-on-ocp && cp -a * /opt/ml-on-ocp
+WORKDIR "/opt/ml-on-ocp"
+
 # Set up our notebook config.
 COPY jupyter_notebook_config.py /root/.jupyter/
-
 COPY run_jupyter.sh /
-COPY data /data
-#COPY figures /figures
 
-#WORKDIR "/"
+#COPY figures /figures
 
 EXPOSE 8888 6006
 
