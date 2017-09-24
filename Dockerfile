@@ -41,8 +41,6 @@ WORKDIR "/opt/ml-on-ocp"
 COPY jupyter_notebook_config.py /root/.jupyter/
 COPY run_jupyter.sh /
 
-#COPY figures /figures
-
 EXPOSE 8888 6006
 
 CMD /run_jupyter.sh --allow-root
