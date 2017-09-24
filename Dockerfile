@@ -35,6 +35,7 @@ COPY jupyter_notebook_config.py /root/.jupyter/
 COPY run_jupyter.sh /
 COPY data /data
 COPY figure /figures
+RUN rm -rf /figures/*
 
 WORKDIR "/"
 
