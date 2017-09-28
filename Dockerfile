@@ -12,8 +12,7 @@ RUN echo -e 'export CUDA_VISIBLE_DEVICES=0\nexport CUDA_HOME=/usr/local/cuda \ne
 RUN ldconfig
 
 ##python3
-#RUN yum -y install python34-pip
-#RUN yum -y install python34-devel && yum clean all
+#RUN yum -y install python34-pip python34-devel && yum clean all
 #RUN pip3 install --upgrade pip
 #RUN pip3 install tensorflow-gpu==1.3.0
 #RUN pip3 install keras
@@ -21,8 +20,7 @@ RUN ldconfig
 #RUN pip3 install matplotlib
 
 #python2
-RUN yum -y install python-pip;
-RUN yum -y install python-devel && yum clean all
+RUN yum -y install python-pip python-devel && yum clean all
 RUN pip install --upgrade pip
 RUN pip install tensorflow-gpu==1.3.0
 RUN pip install jupyter
