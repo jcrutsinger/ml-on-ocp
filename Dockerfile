@@ -9,12 +9,12 @@ RUN yum -y install wget cmake gcc gcc-c++ git make patch pciutils unzip vim-enha
 RUN yum -y install cuda && yum clean all
 RUN export CUDA_HOME="/usr/local/cuda" CUDA_PATH="${CUDA_HOME}" PATH="${CUDA_HOME}/bin${PATH:+:${PATH}}" LD_LIBRARY_PATH="${CUDA_HOME}/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"; 
 RUN echo -e 'export CUDA_VISIBLE_DEVICES=0\nexport CUDA_HOME=/usr/local/cuda \nexport CUDA_PATH=${CUDA_HOME} \nexport PATH=${CUDA_HOME}/bin:${PATH} \nexport LD_LIBRARY_PATH=${CUDA_HOME}/lib64:/usr/local/lib:$LD_LIBRARY_PATH \n' >> ~/.bashrc; cd /tmp && wget -q "http://repo.home.nicknach.net/repo/nvidia/cudnn-8.0-linux-x64-v6.0.tgz"; tar -C /usr/local -xf /tmp/cudnn-8.0-linux-x64-v6.0.tgz; /bin/rm /tmp/cudnn-8.0-linux-x64-v6.0.tgz
-RUN ldconfig;
+RUN ldconfig
 
 ##python3
 #RUN yum -y install python34-pip
+#RUN yum -y install python34-devel && yum clean all
 #RUN pip3 install --upgrade pip
-#RUN yum -y install python34-devel && yum clean all; 
 #RUN pip3 install tensorflow-gpu==1.3.0
 #RUN pip3 install keras
 #RUN pip3 install jupyter
@@ -22,8 +22,8 @@ RUN ldconfig;
 
 #python2
 RUN yum -y install python-pip;
-RUN pip install --upgrade pip;
-RUN yum -y install python-devel && yum clean all;
+RUN yum -y install python-devel && yum clean all
+RUN pip install --upgrade pip
 RUN pip install tensorflow-gpu==1.3.0
 RUN pip install jupyter
 RUN pip install matplotlib
