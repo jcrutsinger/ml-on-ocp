@@ -26,7 +26,7 @@
 8.  expose the jupyter UI port
 	> oc expose svc jupyter --port 8888
 
-9.  test the mnist notebook, it will run on the general CPU (use top), then patch the dc to set resource limits and nodeaffinity 
+9.  then patch the dc to set resource limits and nodeaffinity 
 > oc patch dc jupyter -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers":[{"name":"jupyter","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'
 #### now run the mnist notebook again and see that it scheduled on the GPU (use nvidia-smi on the bare-metal node)
 
