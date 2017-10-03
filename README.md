@@ -11,22 +11,16 @@
 3.  set anyuid for the default serviceaccount:
 	> oc adm policy add-scc-to-user anyuid -z default
 
-4.  set an alias to refresh from github:
-	>alias refdemo='cd ~; rm -rf ml-on-ocp; git clone https://github.com/nnachefski/ml-on-ocp.git; cd ml-on-ocp'
+4.  now build the base image
+	> oc new-build https://github.com/nnachefski/ml-on-ocp.git --name=rhel7-cuda --context-dir=rhel7-cuda
 
-5.  now do the refresh:
-	> refdemo
+5.  now build/deploy the AI/ML framework
+	> oc new-app https://github.com/nnachefski/ml-on-ocp.git --name=jupyter
 
-6.  now build the base image
-	> oc new-build . --name=rhel7-cuda --context-dir=rhel7-cuda
-
-7.  now build/deploy the AI/ML framework
-	> oc new-app . --name=jupyter
-
-8.  expose the jupyter UI port
+6.  expose the jupyter UI port
 	> oc expose svc jupyter --port 8888
 
-9.  then patch the dc to set resource limits and nodeaffinity 
+7.  then patch the dc to set resource limits and nodeaffinity 
 > oc patch dc jupyter -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers":[{"name":"jupyter","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'
 #### now run the mnist notebook again and see that it scheduled on the GPU (use nvidia-smi on the bare-metal node)
 
