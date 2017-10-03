@@ -1,5 +1,8 @@
 FROM rhel7-cuda
 
+RUN export CUDA_HOME="/usr/local/cuda" CUDA_PATH="${CUDA_HOME}" PATH="${CUDA_HOME}/bin${PATH:+:${PATH}}" LD_LIBRARY_PATH="${CUDA_HOME}/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"; 
+RUN ldconfig -v |grep cuda
+
 ##python3
 #RUN yum -y install python34-pip python34-devel && yum clean all
 #RUN pip3 install --upgrade pip
