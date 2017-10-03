@@ -1,8 +1,8 @@
 ## This repo's content is for building and deploying CUDA/GPU-enabled ML/AI images on Openshift 3.6.
 ### You must first build the base image (which adds the cuda layer)
-### This example Dockerfile is for Tensorflow+Jupyter
+#### This example uses Tensorflow+Jupyter
 
-#### Env vars
+##### Env vars
 1.  join a bare-metal node to your 3.6 cluster (w/ an NVIDIA GPU) and label that node appropriately:
 	> oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX_970' --overwrite
 
