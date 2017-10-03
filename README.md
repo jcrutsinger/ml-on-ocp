@@ -2,6 +2,7 @@
 # You must first build the base image (adds cuda layer)
 # You can create your own Dockerfile for whatever your ML platform is.  This one is for Tensorflow+Jupyter
 
+<code>
 # Env vars
 NODE_NAME=hv4.home.nicknach.net
 GPU_NAME=GTX_970
@@ -39,5 +40,5 @@ oc expose svc jupyter --port 8888
 oc patch dc $APP -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers":[{"name":"$APP","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'
 
 # now run the mnist notebook again and see that it scheduled on the GPU (use nvidia-smi on the bare-metal node)
-
+</code>
 
