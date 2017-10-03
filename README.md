@@ -2,14 +2,13 @@
 ## You must first build the base image (adds cuda layer)
 ## You can create your own Dockerfile for whatever your ML platform is.  This one is for Tensorflow+Jupyter
 
-<code>
-# Env vars
-NODE_NAME=hv4.home.nicknach.net\n
-GPU_NAME=GTX_970\n
-PROJECT=ml-on-ocp\n
-GIT=https://github.com/nnachefski/ml-on-ocp.git\n
-APP=jupyter\n
-</code>
+#### Env vars
+`NODE_NAME=hv4.home.nicknach.net`
+`GPU_NAME=GTX_970`
+`PROJECT=ml-on-ocp`
+`GIT=https://github.com/nnachefski/ml-on-ocp.git`
+`APP=jupyter`
+
 
 1.  Join a bare-metal Openshift 3.6 node to your cluster w/ a CUDA-enabled NVIDIA GPU (label that node appropriately):
 	`oc label node $NODE_NAME alpha.kubernetes.io/nvidia-gpu-name='$GPU_NAME' --overwrite`
