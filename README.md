@@ -23,30 +23,19 @@ APP=jupyter\n
 4.  set an alias to refresh from github:
 	`alias refdemo='cd ~; rm -rf $PROJECT; git clone $GIT; cd $PROJECT'`
 
-5.  now do the refresh
-<code>
-	refdemo
-</code>
+5.  now do the refresh:
+	`refdemo`
 
 6.  now build the base image
-<code>
-	oc new-build . --name=rhel7-cuda --context-dir=rhel7-cuda
-</code>
+	`oc new-build . --name=rhel7-cuda --context-dir=rhel7-cuda`
 
 7.  now build/deploy the AI/ML framework
-<code>
-	oc new-app . --name=jupyter
-</code>
+	`oc new-app . --name=jupyter`
 
 8.  expose the jupyter UI port
-<code>
-	oc expose svc jupyter --port 8888
-</code>
+	`oc expose svc jupyter --port 8888`
 
 9.  test the mnist notebook, it will run on the general CPU (use top), then patch the dc to set resource limits and nodeaffinity 
-<code>
-	oc patch dc $APP -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers":[{"name":"$APP","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'
-</code>
-
+`oc patch dc $APP -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers":[{"name":"$APP","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'`
 ## now run the mnist notebook again and see that it scheduled on the GPU (use nvidia-smi on the bare-metal node)
 
