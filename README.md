@@ -11,19 +11,17 @@ GIT=https://github.com/nnachefski/ml-on-ocp.git\n
 APP=jupyter\n
 </code>
 
-1.  Join a bare-metal Openshift 3.6 node to your cluster w/ a CUDA-enabled NVIDIA GPU (label that node appropriately)
+1.  Join a bare-metal Openshift 3.6 node to your cluster w/ a CUDA-enabled NVIDIA GPU (label that node appropriately):
 	`oc label node $NODE_NAME alpha.kubernetes.io/nvidia-gpu-name='$GPU_NAME' --overwrite`
 
-2.  create the project
+2.  create the project:
 	`oc new-project ml-on-ocp`
 
-3.  set anyuid for the default serviceaccount
-	oc adm policy add-scc-to-user anyuid -z default
+3.  set anyuid for the default serviceaccount:
+	`oc adm policy add-scc-to-user anyuid -z default`
 
-4.  set an alias to refresh from github
-<code>
-	alias refdemo='cd ~; rm -rf $PROJECT; git clone $GIT; cd $PROJECT'
-</code>
+4.  set an alias to refresh from github:
+	`alias refdemo='cd ~; rm -rf $PROJECT; git clone $GIT; cd $PROJECT'`
 
 5.  now do the refresh
 <code>
