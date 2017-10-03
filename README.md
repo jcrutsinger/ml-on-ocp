@@ -1,6 +1,6 @@
-# This repo's content is for building and deploying CUDA/GPU-enabled ML/AI images on Openshift 3.6.
-## You must first build the base image (adds cuda layer)
-## You can create your own Dockerfile for whatever your ML platform is.  This one is for Tensorflow+Jupyter
+## This repo's content is for building and deploying CUDA/GPU-enabled ML/AI images on Openshift 3.6.
+### You must first build the base image (which adds the cuda layer)
+### This example Dockerfile is for Tensorflow+Jupyter
 
 #### Env vars
 1.  join a bare-metal node to your 3.6 cluster (w/ an NVIDIA GPU) and label that node appropriately:
