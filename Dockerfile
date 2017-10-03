@@ -11,8 +11,7 @@ FROM rhel7-cuda
 #python2
 RUN yum -y install python-pip python-devel && yum clean all
 RUN pip install --upgrade pip
-#RUN pip install --upgrade tensorflow-gpu==1.3.0
-RUN pip install --upgrade tensorflow-gpu
+RUN pip install tensorflow-gpu==1.3.0
 RUN pip install jupyter
 RUN pip install matplotlib
 RUN pip install keras
