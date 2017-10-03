@@ -3,7 +3,7 @@
 ## You can create your own Dockerfile for whatever your ML platform is.  This one is for Tensorflow+Jupyter
 
 #### Env vars
-1.  join a bare-metal Openshift 3.6 node to your cluster w/ a CUDA-enabled NVIDIA GPU (label that node appropriately):
+1.  join a bare-metal node to your 3.6 cluster w/ a CUDA-enabled NVIDIA GPU (label that node appropriately):
 	> oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX_970' --overwrite
 
 2.  create the project:
