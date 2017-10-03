@@ -4,26 +4,18 @@
 
 <code>
 # Env vars
-NODE_NAME=hv4.home.nicknach.net
-
-GPU_NAME=GTX_970
-
-PROJECT=ml-on-ocp
-
-GIT=https://github.com/nnachefski/ml-on-ocp.git
-
-APP=jupyter
+NODE_NAME=hv4.home.nicknach.net\n
+GPU_NAME=GTX_970\n
+PROJECT=ml-on-ocp\n
+GIT=https://github.com/nnachefski/ml-on-ocp.git\n
+APP=jupyter\n
 </code>
 
 1.  Join a bare-metal Openshift 3.6 node to your cluster w/ a CUDA-enabled NVIDIA GPU (label that node appropriately)
-<code>
 	oc label node $NODE_NAME alpha.kubernetes.io/nvidia-gpu-name='$GPU_NAME' --overwrite
-</code>
 
 2.  create the project
-<code>
 	oc new-project ml-on-ocp
-</code>
 
 3.  set anyuid for the default serviceaccount
 <code>
