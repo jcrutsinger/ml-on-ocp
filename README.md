@@ -2,7 +2,6 @@
 ### You must first build the base image (which adds the cuda layer)
 #### This example uses Tensorflow+Jupyter
 
-##### Env vars
 1.  join a bare-metal node to your 3.6 cluster (w/ an NVIDIA GPU) and label that node appropriately:
 	> oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX_970' --overwrite
 
