@@ -3,12 +3,10 @@
 ## You can create your own Dockerfile for whatever your ML platform is.  This one is for Tensorflow+Jupyter
 
 #### Env vars
-`NODE_NAME=hv4.home.nicknach.net`
-`GPU_NAME=GTX_970`
-`PROJECT=ml-on-ocp`
-`GIT=https://github.com/nnachefski/ml-on-ocp.git`
-`APP=jupyter`
-
+> NODE_NAME=hv4.home.nicknach.net
+> GPU_NAME=GTX_970
+> PROJECT=ml-on-ocp
+> GIT=https://github.com/nnachefski/ml-on-ocp.git
 
 1.  Join a bare-metal Openshift 3.6 node to your cluster w/ a CUDA-enabled NVIDIA GPU (label that node appropriately):
 	`oc label node $NODE_NAME alpha.kubernetes.io/nvidia-gpu-name='$GPU_NAME' --overwrite`
@@ -35,6 +33,6 @@
 	`oc expose svc jupyter --port 8888`
 
 9.  test the mnist notebook, it will run on the general CPU (use top), then patch the dc to set resource limits and nodeaffinity 
-`oc patch dc $APP -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers":[{"name":"$APP","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'`
+> oc patch dc jupyter -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers":[{"name":"jupyter","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'
 ## now run the mnist notebook again and see that it scheduled on the GPU (use nvidia-smi on the bare-metal node)
 
