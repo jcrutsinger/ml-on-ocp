@@ -3,7 +3,7 @@ FROM rhel7-cuda
 ##python3
 RUN yum -y install python34-pip python34-devel && yum clean all
 RUN pip3 install --upgrade pip
-RUN pip3 install tensorflow-gpu==1.3.0
+RUN pip3 install --upgrade tensorflow-gpu==1.3.0
 RUN pip3 install keras
 RUN pip3 install jupyter
 RUN pip3 install matplotlib
