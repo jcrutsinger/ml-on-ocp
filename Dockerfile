@@ -17,9 +17,12 @@ RUN pip install matplotlib
 RUN pip install keras
 
 #setup dir
-RUN mkdir /opt/ml-on-ocp
+RUN mkdir -p /opt/ml-on-ocp/data/nmo && mkdir /opt/ml-on-ocp/data/mnist
+
 COPY *.ipynb /opt/ml-on-ocp/
 COPY data /opt/ml-on-ocp/data
+#COPY data/nmo /opt/ml-on-ocp/data/nmo
+#COPY data/mnist /opt/ml-on-ocp/data/mnist
 COPY figures /opt/ml-on-ocp/figures
 
 WORKDIR "/opt/ml-on-ocp"
