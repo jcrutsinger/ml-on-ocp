@@ -4,7 +4,7 @@
 
 1.  join a bare-metal node (w/ an NVIDIA GPU) to your 3.6 cluster and label that node appropriately:
 	> oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX_970' --overwrite
-	(dont forget to enable the features gate for accelerators in the node-config.yml for this node)
+	(dont forget to enable the Features Gate for Accelerators in the node-config.yml for this node)
 
 2.  create the project:
 	> oc new-project ml-on-ocp
@@ -24,5 +24,5 @@
 7.  then patch the dc to set resource limits and nodeaffinity 
 	> oc patch dc jupyter -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers":[{"name":"jupyter","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'
 
-#### now run the mnist notebook again and see that it scheduled on the GPU (use nvidia-smi on the bare-metal node)
+#### now run the mnist notebook and see that it scheduled on the GPU (use nvidia-smi on the bare-metal node)
 
