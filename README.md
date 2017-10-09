@@ -3,7 +3,7 @@
 #### This example uses Tensorflow+Jupyter
 
 1.  join a bare-metal node (w/ an NVIDIA GPU) to your 3.6 cluster and label that node appropriately:
-	> oc label node *hv4.home.nicknach.net* alpha.kubernetes.io/nvidia-gpu-name='GTX_970' --overwrite
+	> oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX_970' --overwrite
 	(dont forget to enable the features gate for accelerators in the node-config.yml for this node)
 
 2.  create the project:
