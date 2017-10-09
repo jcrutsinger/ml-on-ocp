@@ -10,11 +10,11 @@ FROM rhel7-cuda
 
 #python2
 RUN yum -y install python-pip python-devel && yum clean all && rm -rf /var/cache/yum/*
-RUN pip install --upgrade pip
-RUN pip install tensorflow-gpu==1.3.0
-RUN pip install jupyter
-RUN pip install matplotlib
-RUN pip install keras
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir tensorflow-gpu==1.3.0
+RUN pip install --no-cache-dir jupyter
+RUN pip install --no-cache-dir matplotlib
+RUN pip install --no-cache-dir keras
 
 #setup dir
 RUN mkdir -p /opt/ml-on-ocp/data/nmo && mkdir /opt/ml-on-ocp/data/mnist
