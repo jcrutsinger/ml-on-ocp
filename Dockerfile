@@ -1,4 +1,4 @@
-FROM rhel7-cuda
+FROM rhel7-cuda:latest
 
 RUN yum -y install python-pip python-devel && yum clean all && rm -rf /var/cache/yum/*
 RUN pip install --no-cache-dir --upgrade pip
