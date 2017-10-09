@@ -15,7 +15,7 @@
 4.  now build the base image
 	> oc new-build https://github.com/nnachefski/ml-on-ocp.git --name=rhel7-cuda --context-dir=rhel7-cuda
 
-5.  now build/deploy the AI/ML framework
+5.  now build/deploy the ML framework
 	> oc new-app https://github.com/nnachefski/ml-on-ocp.git --name=jupyter
 
 6.  expose the jupyter UI port
