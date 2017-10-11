@@ -4,7 +4,7 @@
 
 1.  join a bare-metal node (w/ an NVIDIA GPU) to your 3.6 cluster and label that node appropriately:
 	> oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX_970' --overwrite
-	(dont forget to enable the Features Gate for Accelerators in the node-config.yml for this node.  Also, change GTX_970 to whatever you want)
+	- (dont forget to enable the Features Gate for Accelerators in the node-config.yml for this node.  Also, change GTX_970 to whatever you want)
 
 2.  create the project:
 	> oc new-project ml-on-ocp
