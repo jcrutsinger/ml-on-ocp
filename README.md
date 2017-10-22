@@ -26,5 +26,5 @@
 	> oc patch dc jupyter -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers":[{"name":"jupyter","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'
 	- change GTX_970 to match above.  
 	- change 'jupyter' to match above --name (in both dc and container names)
-#### now run the mnist notebook and see that it scheduled on the GPU (use nvidia-smi on the bare-metal node)
 
+### now run the mnist notebook and see that it scheduled on the GPU (use nvidia-smi on the bare-metal node)
