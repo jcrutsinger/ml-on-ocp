@@ -13,16 +13,13 @@
 3.  set anyuid for the default serviceaccount:
 	> oc adm policy add-scc-to-user anyuid -z default
 
-4.  now build the base image
-	> oc new-build https://github.com/nnachefski/ml-on-ocp.git --name=rhel7-cuda --context-dir=rhel7-cuda
-
-5.  now build/deploy the ML framework
+4.  now build/deploy the ML framework
 	> oc new-app https://github.com/nnachefski/ml-on-ocp.git --name=jupyter
 
-6.  expose the jupyter UI port
+5.  expose the jupyter UI port
 	> oc expose svc jupyter --port 8888
 
-7.  then patch the dc to set resource limits and nodeaffinity 
+6.  then patch the dc to set resource limits and nodeaffinity 
 	> oc patch dc jupyter -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX"]}]}]}}},"containers":[{"name":"jupyter","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'
 	- change GTX to match above.  
 	- change 'jupyter' to match above --name (in both dc and container names)
