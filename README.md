@@ -3,9 +3,9 @@
 #### This example uses Tensorflow+Jupyter
 
 1.  join a bare-metal node (w/ an NVIDIA GPU) to your 3.6 cluster and label that node appropriately:
-	> oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX_970' --overwrite
+	> oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX' --overwrite
 	- dont forget to enable the Features Gate for Accelerators in the node-config.yml for this node  
-	- change GTX_970 to whatever you want
+	- change GTX to whatever you want
 
 2.  create the project:
 	> oc new-project ml-on-ocp
@@ -23,8 +23,8 @@
 	> oc expose svc jupyter --port 8888
 
 7.  then patch the dc to set resource limits and nodeaffinity 
-	> oc patch dc jupyter -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX_970"]}]}]}}},"containers":[{"name":"jupyter","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'
-	- change GTX_970 to match above.  
+	> oc patch dc jupyter -p '{"spec":{"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"alpha.kubernetes.io/nvidia-gpu-name","operator":"In","values":["GTX"]}]}]}}},"containers":[{"name":"jupyter","resources":{"limits":{"alpha.kubernetes.io/nvidia-gpu":"1"}}}]}}}}'
+	- change GTX to match above.  
 	- change 'jupyter' to match above --name (in both dc and container names)
 
 ### now run the mnist notebook and see that it scheduled on the GPU (use nvidia-smi on the bare-metal node)
