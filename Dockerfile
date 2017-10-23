@@ -2,7 +2,7 @@ FROM rhel7-cuda:latest
 
 ENV APP_DIR=/opt/ml-on-ocp
 
-RUN yum -y install python-pip python-devel && yum clean all && rm -rf /var/cache/yum/*
+RUN yum -y install python-pip python-devel && yum clean all
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir tensorflow-gpu==1.3.0
 RUN pip install --no-cache-dir jupyter
