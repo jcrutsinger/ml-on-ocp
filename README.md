@@ -2,6 +2,9 @@
 ### You must first build the base image (which adds the cuda layer)
 #### This example uses Tensorflow+Jupyter
 
+0.  make sure to build the rhel7-cuda base image first
+    > https://github.com/nnachefski/rhel7-cuda.git
+
 1.  join a bare-metal node (w/ an NVIDIA GPU) to your 3.6 cluster and label that node appropriately:
 	> oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX' --overwrite
 	- dont forget to enable the Features Gate for Accelerators in the node-config.yml for this node  
