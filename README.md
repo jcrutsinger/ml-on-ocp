@@ -1,4 +1,4 @@
-## This repo's content is for building and deploying CUDA/GPU-enabled ML images on Openshift 3.6.
+## This repo's content is for building and deploying CUDA/GPU-enabled ML images on Openshift.
 ### You must first build the base image (which adds the cuda layer)
 #### This example uses Tensorflow+Jupyter
 
