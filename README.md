@@ -6,7 +6,7 @@
     > oc new-build https://github.com/nnachefski/rhel7-cuda.git --name=rhel7-cuda -n openshift
 
 1.  join a bare-metal node (w/ an NVIDIA GPU) to your 3.6 cluster and label that node appropriately:
-	> oc label node hv4.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX' --overwrite
+	> oc label node hv6.home.nicknach.net alpha.kubernetes.io/nvidia-gpu-name='GTX' --overwrite
 	- dont forget to enable the Features Gate for Accelerators in the node-config.yml for this node  
 	- change GTX to whatever you want
 
